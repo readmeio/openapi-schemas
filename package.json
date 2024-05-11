@@ -1,7 +1,26 @@
 {
-  "name": "@apidevtools/openapi-schemas",
-  "version": "2.1.0",
+  "name": "@readmeio/openapi-schemas",
+  "version": "3.0.0",
   "description": "JSON Schemas for every version of the OpenAPI Specification",
+  "license": "MIT",
+  "author": "ReadMe <support@readme.io> (https://readme.com)",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "schemas"
+  ],
   "keywords": [
     "openapi",
     "open-api",
@@ -14,53 +33,33 @@
     "definition",
     "schema"
   ],
-  "author": {
-    "name": "James Messinger",
-    "url": "https://jamesmessinger.com"
-  },
-  "license": "MIT",
-  "homepage": "https://apitools.dev/openapi-schemas",
   "repository": {
     "type": "git",
-    "url": "https://github.com/APIDevTools/openapi-schemas.git"
+    "url": "git://github.com/readmeio/openapi-schemas.git"
   },
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "schemas"
-  ],
+  "bugs": {
+    "url": "https://github.com/readmeio/openapi-schemas/issues"
+  },
   "scripts": {
-    "clean": "shx rm -rf .nyc_output coverage lib .tmp schemas",
-    "clone": "git clone https://github.com/OAI/OpenAPI-Specification.git .tmp",
-    "copy": "shx cp -r .tmp/schemas schemas",
-    "lint": "eslint src test",
+    "attw": "attw --pack --format table-flipped",
     "build": "npm run build:schemas && npm run build:typescript",
-    "build:schemas": "npm run clean && npm run clone && npm run copy",
-    "build:typescript": "tsc",
-    "watch": "tsc --watch",
-    "test": "mocha && npm run lint",
-    "coverage": "nyc node_modules/mocha/bin/mocha",
-    "upgrade": "npm-check -u && npm audit fix",
-    "bump": "bump --tag --push --all",
-    "release": "npm run upgrade && npm run clean && npm run build && npm test && npm run bump"
-  },
-  "engines": {
-    "node": ">=10"
+    "build:schemas": "git clone https://github.com/OAI/OpenAPI-Specification.git .tmp && cp -r .tmp/schemas src/schemas",
+    "build:typescript": "tsup",
+    "lint": "tsc --noEmit && eslint . --ext .js,.ts --ignore-path .gitignore",
+    "prebuild": "rm -rf .tmp/ dist/ schemas/",
+    "prepack": "npm run build",
+    "pretest": "npm run lint",
+    "prettier": "prettier --check --write .",
+    "test": "vitest run"
   },
   "devDependencies": {
-    "@jsdevtools/eslint-config": "^1.1.4",
-    "@jsdevtools/version-bump-prompt": "^6.1.0",
-    "@types/chai": "^4.2.17",
-    "@types/command-line-args": "^5.0.0",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^15.0.1",
-    "chai": "^4.3.4",
-    "eslint": "^7.25.0",
-    "mocha": "^8.3.2",
-    "npm-check": "^5.9.2",
-    "nyc": "^15.1.0",
-    "shx": "^0.3.3",
-    "typescript": "^4.2.4"
-  }
+    "@readme/eslint-config": "^14.0.0",
+    "@types/node": "^20.12.11",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "prettier": "@readme/eslint-config/prettier"
 }
