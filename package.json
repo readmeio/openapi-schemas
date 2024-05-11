@@ -47,6 +47,7 @@
     "build:typescript": "tsup",
     "lint": "tsc --noEmit && eslint . --ext .js,.ts --ignore-path .gitignore",
     "prebuild": "rm -rf .tmp/ dist/ schemas/",
+    "prelint": "npm run build:schemas",
     "prepack": "npm run build",
     "pretest": "npm run lint",
     "prettier": "prettier --check --write .",
