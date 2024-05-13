@@ -1,5 +1,5 @@
 {
-  "name": "@readmeio/openapi-schemas",
+  "name": "@readme/openapi-schemas",
   "version": "3.0.0",
   "description": "JSON Schemas for every version of the OpenAPI Specification",
   "license": "MIT",

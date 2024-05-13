@@ -20,7 +20,7 @@ This package contains [**the official JSON Schemas**](https://github.com/OAI/Ope
 You can install OpenAPI Schemas via [npm](https://docs.npmjs.com/about-npm/).
 
 ```bash
-npm install @readmeio/openapi-schemas
+npm install @readme/openapi-schemas
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ npm install @readmeio/openapi-schemas
 The library contains all OpenAPI Specification versions:
 
 ```js
-import { openapi } from '@readmeio/openapi-schemas';
+import { openapi } from '@readme/openapi-schemas';
 
 console.log(openapi.v1); // { $schema, id, properties, definitions, ... }
 console.log(openapi.v2); // { $schema, id, properties, definitions, ... }
@@ -39,7 +39,7 @@ console.log(openapi.v31); // { $schema, id, properties, definitions, ... }
 You can use a JSON Schema validator such as [Z-Schema](https://npm.im/z-schema) or [AJV](https://npm.im/ajv) to validate OpenAPI definitions against the specification.
 
 ```js
-import { openapi } from '@readmeio/openapi-schemas';
+import { openapi } from '@readme/openapi-schemas';
 import ZSchema from 'z-schema';
 
 // Create a ZSchema validator
