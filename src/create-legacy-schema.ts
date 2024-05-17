@@ -2,11 +2,10 @@ import fs from 'node:fs';
 
 import asdf from './schemas/v3.1/schema.json';
 
-// we gotta fix that type woof
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const clone = structuredClone(asdf) as any;
+const clone = structuredClone(asdf) as typeof asdf;
 
-// we gotta make sure that this is the only actual change and that this change is actually correct
+// @ts-expect-error: we're replacing the $dynamicRef with the following
+// object so it should expect an error
 clone.$defs.header.properties.schema = { type: ['object', 'boolean'] };
 
 fs.writeFileSync('src/schemas/v3.1/legacy-schema.json', JSON.stringify(clone, null, 2));
