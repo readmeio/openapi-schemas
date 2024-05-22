@@ -2,7 +2,7 @@ import fs from 'node:fs';
 
 import oas31 from './schemas/v3.1/schema.json';
 
-const clone = structuredClone(oas31) as typeof oas31;
+const clone = structuredClone(oas31);
 
 // @ts-expect-error: we're replacing the $dynamicRef with the following
 // object so it should expect an error
